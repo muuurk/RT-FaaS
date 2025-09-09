@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: robot
+  labels:
+    app: robot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: robot
+  template:
+    metadata:
+      labels:
+        app: robot
+    spec:
+      containers:
+      - name: robot
+        image: mmarci98/edfrobotcontainer_ld2
+        command: ["./myapp","10","100"]  # Substitute timeout and fps here
+      nodeSelector:
+        job: "robot"
